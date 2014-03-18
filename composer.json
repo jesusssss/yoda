@@ -1,0 +1,12 @@
+{
+    "require": {
+        "monolog/monolog": "1.2.*",
+        "doctrine/orm": "v2.4.2",
+        "twig/twig": "v1.15.1"
+    },
+    "autoload": {
+        "psr-0": {
+            "controllers": ""
+        }
+    }
+}
