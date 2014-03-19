@@ -1,35 +1,44 @@
+{% import "setup.twig" as setup %}
 <!DOCTYPE html>
 <html>
     <head>
-        {% import "setup.twig" as setup %}
-
-        {% block head %}
         <title>
-            Yodacms -
-            {{ title }}
+            Yodacms
         </title>
-        {% endblock %}
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="{{ setup.js }}toolbox.js"></script>
         <link rel="stylesheet" href="{{ setup.css }}styles.css">
     </head>
     <body>
-        {% block header %}
-            <div id="header">
-                {{ setup.css }}
-                Header area here ({{ css }}{{ img }}{{ js }})
+        <header>
+            <div class="wrapper">
+                <div id="logo">
+                    <img src="{{ setup.img }}logo.png" style="width: 60px; height: 60px;" alt=""/>
+                </div>
+                <div id="nav">
+                    {# TODO Generate automatik menu from CMS system #}
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/">News</a></li>
+                        <li><a href="/">About</a></li>
+                        <li><a href="/">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
             </div>
-        {% endblock %}
-        {% block content %}
-            <div id="content">
+        </header>
+        <div id="content">
+            <div class="wrapper">
                 {% set toInclude %}{{ page }}.twig{% endset %}
                 {% include toInclude %}
             </div>
-        {% endblock %}
-        {% block footer %}
-            <div id="footer">
-                Footer here
+        </div>
+        <footer>
+            <div class="wrapper">
+                <div id="footer">
+                    Footer here
+                </div>
             </div>
-        {% endblock %}
+        </footer>
     </body>
 </html>
