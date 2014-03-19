@@ -2,8 +2,11 @@
 
 namespace controllers;
 
-class error {
+use libs\controller;
+
+class error extends controller {
     public function __construct() {
-        echo "ERROR CONTROLLER";
+        parent::__construct();
+        $this->view->render("error");
     }
 }

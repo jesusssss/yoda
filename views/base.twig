@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% import "setup.twig" as setup %}
+
+        {% block head %}
+        <title>
+            Yodacms -
+            {{ title }}
+        </title>
+        {% endblock %}
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="{{ setup.js }}toolbox.js"></script>
+        <link rel="stylesheet" href="{{ setup.css }}styles.css">
+    </head>
+    <body>
+        {% block header %}
+            <div id="header">
+                {{ setup.css }}
+                Header area here ({{ css }}{{ img }}{{ js }})
+            </div>
+        {% endblock %}
+        {% block content %}
+            <div id="content">
+                {% set toInclude %}{{ page }}.twig{% endset %}
+                {% include toInclude %}
+            </div>
+        {% endblock %}
+        {% block footer %}
+            <div id="footer">
+                Footer here
+            </div>
+        {% endblock %}
+    </body>
+</html>

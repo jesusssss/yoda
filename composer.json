@@ -6,7 +6,9 @@
     },
     "autoload": {
         "psr-0": {
-            "controllers": ""
+            "controllers": "",
+            "libs": "",
+            "models": ""
         }
     }
 }

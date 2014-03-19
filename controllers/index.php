@@ -2,11 +2,9 @@
 
 namespace controllers;
 
-class index {
+class index extends \libs\controller {
     public function __construct() {
-        echo "INDEX CONTROLLER";
-    }
-    public function test() {
-
+        parent::__construct();
+        $this->view->render("home");
     }
 }
