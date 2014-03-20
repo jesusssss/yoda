@@ -2,7 +2,7 @@
 
 namespace libs;
 class bootstrap {
-    public function __construct($theme) {
+    public function __construct() {
         if(!isset($_REQUEST["rt"])) {
             $controller = new \controllers\index();
         } else {

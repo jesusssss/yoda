@@ -7,7 +7,16 @@ class view {
     public $template;
 
     public function __construct() {
-        $this->loader = new \Twig_Loader_Filesystem(VIEWS);
+        $subsite = $_SERVER["SERVER_NAME"];
+        $subsite = explode(".", $subsite);
+        $isSubsite = count($subsite);
+        if(count($subsite) > 2) {
+            $theme = $subsite[0]."/";
+        } else {
+            $theme = "nosite/";
+        }
+
+        $this->loader = new \Twig_Loader_Filesystem(VIEWS.$theme);
         $this->twig = new \Twig_Environment($this->loader, array(
             'cache' => CACHE,
             'debug' => true

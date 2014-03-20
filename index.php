@@ -18,6 +18,4 @@ require_once(__DIR__."/config/db.php");
 //Bootstrap routing
 require_once(LIBS."bootstrap.php");
 
-//TODO Fix så man kan køre themes -> Spørg Lars
-$theme = "";
-$application = new \libs\bootstrap($theme);
+$application = new \libs\bootstrap();
