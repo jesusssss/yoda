@@ -1,0 +1,14 @@
+<form action="/admin/create" method="get">
+    Name: <input type="text" name="createpage-name" id="name"/><br/>
+    Link: <input type="text" name="createpage-link" id="link"/><br/>
+    Type: <input type="text" name="createpage-type" value="CMS" id="type"/>
+    <input type="submit"/>
+</form>
+
+<script>
+    $(document).ready(function() {
+       $("#name").on("keyup", function() {
+           $("#link").val("/"+$("#name").val());
+       });
+    });
+</script>
