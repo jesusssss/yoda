@@ -1,0 +1,61 @@
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#pages" data-toggle="tab">Pages</a></li>
+    <li><a href="#add" data-toggle="tab">Add</a></li>
+    <li><a href="#remove" data-toggle="tab">Remove</a></li>
+</ul>
+
+{# LIST PAGES #}
+<div class="tab-content">
+    <div id="pages" class="tab-pane fade active in">
+        <table class="table table-striped draggable">
+            <tr>
+                <th>#ID</th>
+                <th>NAME</th>
+                <th>LINK</th>
+                <th>TYPE</th>
+            </tr>
+            {# TODO List pages #}
+            <tr>
+                <td>
+                    1
+                </td>
+                <td>
+                    Forside
+                </td>
+                <td>
+                    /forside
+                </td>
+                <td>
+                    CMS
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="add" class="tab-pane fade">
+        <form action="/cms/addPage" method="get">
+            <div class="form-group">
+                <label for="cmsname">Page name:</label>
+                <input type="text" class="form-control" name="cms-name" id="cmsname" placeholder="Name of the page"/>
+            </div>
+            <div class="form-group">
+                <label for="cmslink">Page link:</label>
+                <input type="text" name="cms-link" class="form-control" placeholder="Link for the page"/>
+            </div>
+            <div class="form-group">
+                <label for="cmstype">Page type:</label>
+                <select name="cms-type" id="cmstype" class="form-control">
+                    <option value="cms">CMS</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-success" value="Create page"/>
+            </div>
+        </form>
+    </div>
+
+    <div id="remove"  class="tab-pane fade">
+        {#TODO Make remove page#}
+        Remove
+    </div>
+</div>

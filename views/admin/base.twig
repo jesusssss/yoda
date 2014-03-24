@@ -7,22 +7,26 @@
         </title>
         <meta charset="utf-8">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
         <script src="{{ setup.js }}toolbox.js"></script>
-        <link rel="stylesheet" href="{{ setup.css }}styles.css">
+        <link rel="stylesheet" href="{{ setup.css }}styles.css"/>
     </head>
     <body>
         <header>
             <div class="wrapper">
                 <div id="logo">
-                    <img src="{{ setup.img }}logo.png" style="width: 60px; height: 60px;" alt=""/> ADMINISTRATION
+                    YODA ADMINISTRATION
                 </div>
                 <div id="nav">
                     {# TODO Generate automatik menu from CMS system #}
                     <ul>
                         <li><a href="/admin/">Home</a></li>
-                        <li><a href="/admin/createpage">Create page</a></li>
-                        <li><a href="/admin/">About</a></li>
-                        <li><a href="/admin/">Contact</a></li>
+                        <li><a href="/admin/pages">Pages</a></li>
+                        <li><a href="/admin/">Modules</a></li>
+                        <li><a href="/admin/">More Shit</a></li>
                     </ul>
                 </div>
                 <div class="clear"></div>

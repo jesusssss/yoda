@@ -4,13 +4,21 @@ html, body {
 }
 
 body {
-    background: silver;
+    font-family: 'Trebuchet MS', Arial, Verdana, sans-serif;
 }
 
 header {
     padding: 10px 0px;
-    background: green;
+    background: #cccccc; /* Old browsers */
+    background: -moz-linear-gradient(top,  #cccccc 0%, #bbbbbb 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cccccc), color-stop(100%,#bbbbbb)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #cccccc 0%,#bbbbbb 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #cccccc 0%,#bbbbbb 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #cccccc 0%,#bbbbbb 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #cccccc 0%,#bbbbbb 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cccccc', endColorstr='#bbbbbb',GradientType=0 ); /* IE6-9 */
     display: block;
+    color: #fff;
 }
 
 footer {
@@ -44,6 +52,16 @@ a img {
 #nav ul {
     list-style: none;
     padding: 0;
+    margin: 0;
+}
+
+#nav ul:after {
+    clear: both;
+    display: block;
+    content: ".";
+    visibility: hidden;
+    width: 0;
+    height: 0;
 }
 
 #nav ul li {
@@ -53,7 +71,7 @@ a img {
 
 #nav ul li a {
     text-decoration: underline;
-    color: #999;
+    color: #fff;
 }
 
 #nav ul li a:hover {
@@ -65,4 +83,8 @@ a img {
     background: #ffffff;
     padding: 10px;
     min-height: 500px;
+}
+
+.tab-content {
+    padding: 10px 0px;
 }

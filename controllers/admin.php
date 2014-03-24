@@ -18,25 +18,11 @@ class admin extends \libs\controller {
         $this->getOutput();
     }
 
-    public function create() {
-        $pageName = $this->pget("createpage-name");
-        $pageType = $this->pget("createpage-type");
-        echo $pageName;
-        echo "<br/>";
-        echo $pageType;
-        $this->getOutput("createpage");
-    }
-
-    public function createpage() {
-        $this->getOutput("createpage");
+    public function pages() {
+        $this->getOutput("pages");
     }
 
     public function test() {
         $this->getOutput("test", array("info" => "this is a test site"));
-    }
-
-    public function getOutput($page = null, $data = array()) {
-        $data["site"] = $this->getSubsite();
-        $this->view->render($page, $data);
     }
 }

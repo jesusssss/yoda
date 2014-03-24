@@ -1,7 +1,6 @@
 <?php
 
 namespace libs;
-
 class controller {
     public $view;
     public $subsite;
@@ -25,5 +24,10 @@ class controller {
         if(isset($_REQUEST[$post])) {
             return $_REQUEST[$post];
         }
+    }
+
+    public function getOutput($page = null, $data = array()) {
+        $data["site"] = $this->getSubsite();
+        $this->view->render($page, $data);
     }
 }

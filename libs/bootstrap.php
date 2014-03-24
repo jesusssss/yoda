@@ -1,8 +1,36 @@
 <?php
 
 namespace libs;
-class bootstrap {
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
+class bootstrap extends \libs\controller{
     public function __construct() {
+        //DOCTRIN EM
+        $paths = array(MODELS);
+        $isDevMode = true;
+
+        // the connection configuration
+
+        if($this->getSubsite() != false) {
+            $dbName = $this->getSubsite();
+        } else {
+            $dbName = "noSite";
+        }
+
+        $dbParams = array(
+            'driver'   => 'pdo_mysql',
+            'host'     => '127.0.0.1',
+            'user'     => 'root',
+            'password' => '1871rene',
+            'dbname'   => $dbName,
+        );
+
+        $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
+        $GLOBALS["em"] = EntityManager::create($dbParams, $config);
+
+
+
+        //ROUTING
         if(!isset($_REQUEST["rt"])) {
             $controller = new \controllers\index();
         } else {

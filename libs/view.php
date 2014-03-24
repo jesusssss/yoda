@@ -39,7 +39,6 @@ class view extends \libs\controller {
         print_r($requests);
         $this->loader = new \Twig_Loader_Filesystem(VIEWS.$this->theme);
         $this->twig = new \Twig_Environment($this->loader, array(
-            'cache' => CACHE,
             'debug' => true
         ));
         $this->template = $this->twig->loadTemplate("base.twig");

@@ -3,8 +3,18 @@
 namespace controllers;
 
 class index extends \libs\controller {
-    public function __construct() {
+    public function __construct($index = null) {
         parent::__construct();
-        $this->view->render();
+        if(isset($index)) {
+            self::index();
+        }
+    }
+
+    public function index() {
+        $this->getOutput();
+    }
+
+    public function getOutput($page = null, $data = array()) {
+        $this->view->render($page, $data);
     }
 }
