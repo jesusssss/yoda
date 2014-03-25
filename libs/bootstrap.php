@@ -19,9 +19,9 @@ class bootstrap extends \libs\controller{
 
         $dbParams = array(
             'driver'   => 'pdo_mysql',
-            'host'     => '127.0.0.1',
-            'user'     => 'root',
-            'password' => '1871rene',
+            'host'     => 'mysql29.unoeuro.com',
+            'user'     => 'baademedia_dk',
+            'password' => '1000koder',
             'dbname'   => $dbName,
         );
 
