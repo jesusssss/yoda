@@ -1,3 +1,0 @@
-<?php
-
-//TODO setup db
