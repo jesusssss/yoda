@@ -38,5 +38,19 @@ Route::group(array('before' => 'guest'), function() {
         'as' => 'account-activate',
         'uses' => 'AccountController@getActivate'
     ));
+});
+
+Route::group(array('prefix' => 'admin'), function() {
+
+    Route::group(array('before' => 'guest'), function() {
+       Route::group(array('before' => 'csrf'), function() {
+
+       });
+
+     Route::get('/', array(
+         "as" => "adminHome",
+         "uses" => "AdminController@index"
+     ));
+    });
 
 });
