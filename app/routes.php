@@ -1,19 +1,42 @@
 <?php
 
 /*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
-View::addNamespace('admin', __DIR__.'/views/admin');
-View::addNamespace('theme', __DIR__.'/views/site');
+ * Get to index page
+ */
+Route::get('/', array(
+    "as" => "home",
+    "uses" => "HomeController@index"
+));
 
-Route::get('/', function()
-{
-	return View::make('theme::index');
+/*
+ * None authenticated users (Guests)
+ */
+Route::group(array('before' => 'guest'), function() {
+
+    /*
+     * Protection for cross-site sessions
+     */
+    Route::group(array('before' => 'csrf'), function() {
+        /*
+         * Create page (POST AND PROTECTED)
+         */
+        Route::post('/account/create', array(
+            "as" => "account-create-post",
+            "uses" => "AccountController@postCreate"
+        ));
+    });
+
+    /*
+     * Create page (GET)
+     */
+    Route::get('/account/create', array(
+        "as" => "account-create",
+        "uses" => "AccountController@getCreate"
+    ));
+
+    Route::get('/account/activate/{code}', array(
+        'as' => 'account-activate',
+        'uses' => 'AccountController@getActivate'
+    ));
+
 });
