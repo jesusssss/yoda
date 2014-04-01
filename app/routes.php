@@ -1,6 +1,15 @@
 <?php
 
 /*
+ * 404 View
+ * // Turn ON when live // TODO Outcomment for 404 page when live/not dev
+App::missing(function($exception)
+{
+    return Response::view('errors.missing', array('url' => Request::url()), 404);
+});
+ */
+
+/*
  * Index page of site
  */
 Route::get('/', array(
