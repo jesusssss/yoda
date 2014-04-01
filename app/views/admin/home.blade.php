@@ -1,2 +1,7 @@
+@extends("admin.layout.main")
 
-    <h1>This is my homepage ADMIN</h1>
+@section("content")
+
+    <h1>My home page</h1>
+
+@stop
