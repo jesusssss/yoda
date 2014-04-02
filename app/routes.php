@@ -93,12 +93,33 @@ Route::group(array('prefix' => 'admin'), function() {
         ));
 
         Route::get("/signout", array(
-            "as" => "signout",
+            "as" => "admin-signout",
             "uses" => "AdminController@signOut"
         ));
 
+        Route::get("/pages", array(
+            "as" => "admin-pages",
+            "uses" => "PageController@getPages"
+        ));
+
+        Route::get("/cart", array(
+            "as" => "admin-cart",
+            "uses" => "AdminController@getCart"
+        ));
+
+        Route::get("/settings", array(
+            "as" => "admin-settings",
+            "uses" => "AdminController@getSettings"
+        ));
+
+        Route::post("/pages/create", array(
+            "as" => "admin-page-create",
+            "uses" => "PageController@createPage"
+        ));
+
+        Route::get("/pages/edit/{id}", array(
+            "as" => "admin-page-edit",
+            "uses" => "PageController@editPage"
+        ));
     });
-
-
-
 });

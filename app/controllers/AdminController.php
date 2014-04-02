@@ -1,10 +1,17 @@
 <?php
 
 Class AdminController extends \BaseController {
+
+    /*
+     * Goto admin homepage
+     */
     public function index() {
         return View::make("admin.home");
     }
 
+    /*
+     * Try login
+     */
     public function postLogin() {
 
         $validator = Validator::make(Input::all(),
@@ -36,13 +43,35 @@ Class AdminController extends \BaseController {
             ->with("global", "There was a problem signing you in.");
     }
 
+    /*
+     * Get login page
+     */
     public function getLogin() {
         return View::make("admin.login");
     }
 
+    /*
+     * Signout user
+     */
     public function signOut() {
         Auth::logout();
         return Redirect::route("admin-login-get")
             ->with("global", "You have been signed out");
     }
+
+    /*
+     * Get Cart
+     */
+    public function getCart() {
+        return Redirect::route("adminHome")
+            ->with("global", "Shop is deactivated");
+    }
+
+    /*
+     * Get Settings
+     */
+    public function getSettings() {
+        return View::make("admin.settings");
+    }
+
 }

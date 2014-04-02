@@ -1,0 +1,287 @@
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+#loginBody {
+    background: #b3cb39 !important;
+}
+
+#loginTop {
+    background: #151515;
+    padding: 8% 0px 10px;
+    width: 100%;
+}
+
+.loginWrapper {
+    width: 496px;
+    margin: 0 auto;
+}
+
+#loginForm {
+    display: block;
+    margin-top: 10px;
+}
+
+#loginForm label {
+    display: block;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+#loginForm input[type='text'], input[type='password'] {
+    display: block;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.25);
+    box-shadow: 0px 4px 3px -2px rgba(0,0,0,0.4) inset;
+    width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 8px 5px;
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+}
+
+#loginForm input[type='submit'] {
+    border: none;
+    background: #151515;
+    border-radius: 4px;
+    margin-top: 10px;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 35px;
+    cursor: pointer;
+    transition: background 0.5s;
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.5);
+}
+
+#msg {
+    text-align: left;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: #fff;
+    margin-top: 10px;
+    background: #636363;
+    display: block;
+}
+
+#msg:before {
+    display: inline-block;
+    content: "Message:";
+    padding: 10px;
+    background: #787878;
+    margin-right: 10px;
+}
+
+#loginForm input[type='submit']:hover {
+    background: #252525;
+    transition: background 0.5s;
+}
+
+a {
+  text-decoration: none;
+}
+
+.wrapper {
+    width: 960px;
+    margin: 0 auto;
+}
+
+#top {
+    background: #151515;
+    width: 100%;
+    padding: 20px 0px;
+  &:after {
+    content: ".";
+    visibility: hidden;
+    display: block;
+    width: 0;
+    height: 0;
+    clear: both;
+  }
+  #nav {
+    float: left;
+    ul {
+      padding: 0;
+      list-style: none;
+      li {
+        float: left;
+        margin-right: 30px;
+        a {
+          display:block;
+          cursor: pointer;
+        }
+        #dashboard {
+          background: url("../img/admin/dashboardIcons.png") no-repeat;
+          height: 47px;
+          width: 47px;
+          &:hover, &.active {
+            background-position: 0px -47px;
+          }
+        }
+        #pages {
+          background: url("../img/admin/pageIcons.png") no-repeat;
+          height: 46px;
+          width: 40px;
+          &:hover, &.active {
+            background-position: 0px -46px;
+          }
+        }
+        #cart {
+          background: url("../img/admin/cartIcons.png") no-repeat;
+          height: 43px;
+          width: 49px;
+          &:hover, &.active {
+            background-position: 0px -43px;
+          }
+        }
+        #settings {
+          background: url("../img/admin/settingsIcons.png") no-repeat;
+          height: 47px;
+          width: 47px;
+          &:hover, &.active {
+            background-position: 0px -47px;
+          }
+        }
+      }
+      &:after {
+        content: ".";
+        display: block;
+        visibility: hidden;
+        width: 0;
+        height: 0;
+        clear: both;
+      }
+    }
+  }
+  #view {
+    float: right;
+    margin-top: 13px;
+    a {
+      color: #999;
+      font-size: 15px;
+      text-decoration: none;
+    }
+  }
+}
+
+#bar {
+  width: 100%;
+  padding: 10px 0px;
+  position: relative;
+  background: #B3CB39;
+  &:after {
+    content: ".";
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
+    clear: both;
+    display: block;
+  }
+  #pageTitle {
+    font-size: 45px;
+    font-weight: bold;
+    text-shadow: 0px 2px 2px rgba(0,0,0,0.4);
+    color: #fff;
+    padding-right: 15px;
+    border-right: 1px solid #9CB228;
+    box-shadow: 1px 0px 0px #C2D850;
+    float: left;
+  }
+  #pageMessage {
+    margin-top: 12px;
+    float: left;
+    padding-left: 15px;
+    color: #7B8A2F;
+    font-size: 14px;
+    img {
+      margin-right: 10px;
+    }
+  }
+  #signout {
+    margin-top: 12px;
+    float: right;
+    a {
+      color: #7A8A25;
+      font-size: 14px;
+      img {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+#content {
+  margin: 10px 0px;
+}
+
+.submit {
+  border: none;
+  background: #151515;
+  border-radius: 4px;
+  margin-top: 10px;
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 35px;
+  cursor: pointer;
+  transition: background 0.5s;
+  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.5);
+  &:hover {
+    background: #252525;
+    transition: background 0.5s;
+  }
+}
+
+
+.pageSelector {
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+// Bootstrap overwrite
+.nav-tabs {
+  border-bottom: 1px solid #B3CB39;
+  margin-bottom: 10px;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+  border: 1px solid #B3CB39;
+  border-bottom-color: transparent;
+  background-color: #B3CB39;
+  color: #fff;
+}
+
+.nav-tabs>li>a {
+  color: #333;
+}
+
+.nav-tabs>li>a:hover {
+  border-color: #B3CB39 #B3CB39 #B3CB39;
+}
+.nav>li>a:hover, .nav>li>a:focus {
+  background-color: #B3CB39;
+  color: #fff;
+}
+
+.table thead {
+  font-weight: bold;
+}
