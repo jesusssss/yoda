@@ -14,11 +14,4 @@ $(document).ready(function() {
     });
 
 
-    //Page edit click
-
-    $(".pageSelector").click(function(e) {
-        e.preventDefault();
-        var pageID = $(this).data("pageid");
-        window.location = "/admin/pages/edit/"+pageID;
-    });
 });

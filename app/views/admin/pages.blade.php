@@ -27,13 +27,13 @@
             <thead>
                 <tr>
                     <th>
-                        Name
+                        Name <span class="small">(Page title)</span>
                     </th>
                     <th>
-                        Active
+                        Active <span class="small">(Display in menu)</span>
                     </th>
                     <th>
-                        Order
+                        Order <span class="small">(Hold and drag)</span>
                     </th>
                 </tr>
             </thead>
@@ -44,7 +44,16 @@
                         {{ $d->getName() }}
                     </td>
                     <td>
-                        {{ $d->getActive() }}
+                        <select name="" id="">
+
+                            <option value="1" @if($d->getActive() == 1)) selected="selected" @endif>
+                                Yes
+                            </option>
+                            <option value="0" @if($d->getActive() == 0)) selected="selected" @endif>
+                                No
+                            </option>
+
+                        </select>
                     </td>
                     <td>
                         {{ $d->getSort() }}
@@ -74,7 +83,7 @@
                         </td>
                         <td>
                             <input type="hidden" name="pageactive" value="0"/>
-                            <input type="checkbox" name="pageactive" value="1"/>
+                            <input type="checkbox" checked="checked" name="pageactive" value="1"/>
                         </td>
                     </tr>
                 </tbody>
