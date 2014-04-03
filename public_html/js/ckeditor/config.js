@@ -3,6 +3,8 @@
  * For licensing, see LICENSE.html or http://ckeditor.com/license
  */
 
+var roxyFileman = '/fileman/index.html';
+
 CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here.
 	// For the complete reference:

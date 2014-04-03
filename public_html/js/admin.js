@@ -73,3 +73,23 @@ function ajaxEdit(ident, field, value, postto) {
         }, 2000);
     });
 }
+
+//AJAX post page function
+function ajaxPost(ident, data, postto) {
+    var data = {
+        id: ident,
+        value: data
+    }
+    $.ajax({
+        url: postto,
+        data: data,
+        type: 'POST'
+    }).done(function(data) {
+            $("#pageMessage").html(
+                data
+            );
+            setTimeout(function() {
+                $("#pageMessage").html("");
+            }, 2000);
+        });
+};

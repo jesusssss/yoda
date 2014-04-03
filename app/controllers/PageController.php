@@ -87,21 +87,51 @@ Class PageController extends BaseController {
     public function editPage() {
 
         $id     = Input::get("id");
-        $field  = Input::get("field");
         $value  = Input::get("value");
+        $field  = Input::get("field");
+        $token  = Input::get("token");
 
-        if($field == "name") {
-            $q = Doctrine::createQuery("UPDATE Page p SET p.name = :val WHERE p.id = :id");
+        if(is_array($token)) {
+            $q = Doctrine::createQuery("UPDATE Page p SET p.content = :val WHERE p.name = :tokendata");
+            $q->setParameters(
+                array(
+                    "val" => $value,
+                    "tokendata" => $token[1]
+                )
+            );
         } else {
-            $q = Doctrine::createQuery("UPDATE Page p SET p.active = :val WHERE p.id = :id");
+            if($field == "name") {
+                $q = Doctrine::createQuery("UPDATE Page p SET p.name = :val WHERE p.id = :tokendata");
+            } else {
+                $q = Doctrine::createQuery("UPDATE Page p SET p.active = :val WHERE p.id = :tokendata");
+            }
+            $q->setParameters(
+                array(
+                    "val" => $value,
+                    "tokendata" => $id,
+                )
+            );
         }
 
-        $q->setParameters(
-            array(
-                "val" => $value,
-                "id" => $id
-            )
-        );
+        if($q->execute()) {
+            return "Information updated";
+        } else {
+            return "Error in updating. Try again later";
+        }
+    }
+
+    public function postPage() {
+
+        $id     = Input::get("id");
+        $value  = Input::get("value");
+
+            $q = Doctrine::createQuery("UPDATE Page p SET p.content = :val WHERE p.id = :id");
+            $q->setParameters(
+                array(
+                    "val" => $value,
+                    "id" => $id
+                )
+            );
 
         if($q->execute()) {
             return "Information updated";

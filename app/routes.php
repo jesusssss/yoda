@@ -122,6 +122,11 @@ Route::group(array('prefix' => 'admin'), function() {
             "uses" => "PageController@editPage"
         ));
 
+        Route::post("/pages/post", array(
+            "as" => "admin-page-post",
+            "uses" => "PageController@postPage"
+        ));
+
         Route::post("/pages/delete", array(
             "as" => "admin-page-delete",
             "uses" => "PageController@deletePage"
