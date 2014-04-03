@@ -98,14 +98,16 @@
         {{ HTML::script("js/ckeditor/ckeditor.js") }}
         <form class="ckForm" method="post">
             <textarea name="ck" id="ck"></textarea>
-            <input type="submit" value="Send" class="submit"/>
+            <input type="submit" value="Send" class="submit" class="ckSubmit"/>
         </form>
         
         <script>
             $(function() {
                 $(".ckedit").click(function() {
-                    $(".ckForm").attr("data-pagename",$(this).data("pagename"));
-                    $(".ckForm").attr("data-pageid",$(this).data("pageid"));
+                    editPagename = $(this).data("pagename");
+                    editPageid = $(this).data("pageid");
+                    $(".ckForm").attr("data-pagename", editPagename);
+                    $(".ckForm").attr("data-pageid", editPageid);
                     if($("#ckWrap").is(":hidden")) {
                         $("#ckWrap").show();
                     }
@@ -120,14 +122,14 @@
                             });
                     }
                     var pagename = $(this).data("pagename");
-                    getCkContent(pagename, '{{ URL::route('admin-page-get-content') }}');
+                    getCkContent(pagename, "{{ URL::route('admin-page-get-content') }}");
                 });
 
-                $( ".ckForm" ).on( "submit", function( event ) {
+                $( ".ckForm" ).on("submit", function( event ) {
                     event.preventDefault();
                     var editorData = CKEDITOR.instances.ck.getData();
-                    var pagename = ["name", $(this).data("pagename")];
-                    var pageid = $(this).data("pageid");
+                    var pagename = ["name", editPagename];
+                    var pageid = editPageid;
                     ajaxPost(pageid, editorData, '{{ URL::route('admin-page-post') }}');
                     $("#ckWrap").fadeOut();
                 });
