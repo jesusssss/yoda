@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.1.*",
         "doctrine/migrations": "1.0.*@dev",
-        "atrauzzi/laravel-doctrine": "dev-master"
+        "atrauzzi/laravel-doctrine": "dev-master",
+        "ckeditor/ckeditor": "4.3.*@dev"
 	},
 	"autoload": {
 		"classmap": [

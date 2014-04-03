@@ -13,12 +13,6 @@
     <li>
         <a href="#create" data-toggle="tab">Create page</a>
     </li>
-    <li>
-        <a href="#sort" data-toggle="tab">Sort pages</a>
-    </li>
-    <li style="visibility: hidden;">
-        <a href="#edit" data-toggle="tab">Edit page</a>
-    </li>
 </ul>
 
 <div class="tab-content">
@@ -35,16 +29,19 @@
                     <th>
                         Order <span class="small">(Hold and drag)</span>
                     </th>
+                    <th>
+                        Edit/Delete <span class="small">(Edit or delete page)</span>
+                    </th>
                 </tr>
             </thead>
             <tbody>
             @foreach ($data as $key => $d)
                 <tr data-pageid="{{ $d->getId() }}" class="pageSelector">
                     <td>
-                        {{ $d->getName() }}
+                        <input type="text" class="ajaxEdit" data-pageid="{{ $d->getId() }}" data-postto="{{ URL::route('admin-page-edit') }}" name="pageName" value="{{ $d->getName() }}"/>
                     </td>
                     <td>
-                        <select name="" id="">
+                        <select class="ajaxEdit" data-pageid="{{ $d->getId() }}" data-postto="{{ URL::route('admin-page-edit') }}" name="" id="">
 
                             <option value="1" @if($d->getActive() == 1)) selected="selected" @endif>
                                 Yes
@@ -57,6 +54,11 @@
                     </td>
                     <td>
                         {{ $d->getSort() }}
+                    </td>
+                    <td>
+                        {{ HTML::image('img/admin/editIcon.png', "Edit", array('class' => 'ckedit', 'data-pagename' => $d->getName())) }}
+                        /
+                        {{ HTML::image('img/admin/deleteIcon.png', "Delete", array('data-postto' => URL::route('admin-page-delete'), 'class' => 'ajaxEdit', 'data-pageid' => $d->getId())) }}
                     </td>
                 </tr>
             @endforeach
@@ -92,8 +94,34 @@
             {{ Form::token() }}
         </form>
     </div>
-    <div class="tab-pane fade" id="sort">
-        Sort pages
+    <div id="stuff">
+        {{ HTML::script("js/ckeditor/ckeditor.js") }}
+        <textarea name="ck" id="ck" style="display: none;"></textarea>
+        <script>
+            $(function() {
+                $(".ckedit").click(function() {
+                    if(!CKEDITOR.instances.ck) {
+                        CKEDITOR.replace("ck");
+                    }
+                    var pagename = $(this).data("pagename");
+                    ajaxGet(pagename, '{{ URL::route('admin-page-get-content') }}');
+
+                    function ajaxGet(name, postto) {
+                        var result = "";
+                        var data = {
+                            name: name
+                        }
+                        $.ajax({
+                            url: postto,
+                            data: data,
+                            type: 'POST'
+                        }).done(function(data) {
+                            CKEDITOR.instances.ck.setData(data[0].content);
+                        });
+                    }
+                });
+            });
+        </script>
     </div>
 </div>
 @stop

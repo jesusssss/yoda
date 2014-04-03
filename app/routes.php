@@ -1,21 +1,21 @@
 <?php
 
 /*
- * 404 View
- * // Turn ON when live // TODO Outcomment for 404 page when live/not dev
-App::missing(function($exception)
-{
-    return Response::view('errors.missing', array('url' => Request::url()), 404);
-});
- */
-
-/*
  * Index page of site
  */
 Route::get('/', array(
     "as" => "home",
     "uses" => "HomeController@index"
 ));
+
+Route::get('/site/{page}', array(
+    "as" => "home-subpage",
+    "uses" => "HomeController@subpage"
+));
+
+Route::get('/error/404', array("as" => "error"), function() {
+    return View::make('errors.missing');
+});
 
 /*
  * None authenticated users (Guests)
@@ -117,9 +117,19 @@ Route::group(array('prefix' => 'admin'), function() {
             "uses" => "PageController@createPage"
         ));
 
-        Route::get("/pages/edit/{id}", array(
+        Route::post("/pages/edit", array(
             "as" => "admin-page-edit",
             "uses" => "PageController@editPage"
+        ));
+
+        Route::post("/pages/delete", array(
+            "as" => "admin-page-delete",
+            "uses" => "PageController@deletePage"
+        ));
+
+        Route::post("/pages/getContent", array(
+            "as" => "admin-page-get-content",
+            "uses" => "PageController@getPageContent"
         ));
     });
 });

@@ -2,8 +2,8 @@
 @section("content")
 
 <h1>404</h1>
-<h2>
-    {{ $url }}
-</h2>
-
+<br/>
+<a href="{{ URL::route('home') }}">
+    Go to frontpage
+</a>
 @stop

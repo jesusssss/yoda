@@ -1,27 +1,14 @@
 <ul>
-    <li>
-        <a href="{{ URL::route('home') }}">
-            Forside
-        </a>
-    </li>
-    <li>
-        <a href="">
-            Motor
-        </a>
-    </li>
-        <li>
-            <a href="">
-                Bilen
-            </a>
-        </li>
-    <li>
-        <a href="">
-            HSE
-        </a>
-    </li>
-    <li>
-        <a href="">
-            Udstyr
-        </a>
-    </li>
+    @if(isset($menu))
+        @foreach($menu as $m)
+            @if($m->getActive() == 1)
+
+            <li>
+                <a href="{{ URL::to('/site/'.$m->getName()) }}">
+                    {{ $m->getName() }}
+                </a>
+            </li>
+            @endif
+        @endforeach
+    @endif
 </ul>
