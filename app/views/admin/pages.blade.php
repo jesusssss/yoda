@@ -53,7 +53,9 @@
                         </select>
                     </td>
                     <td>
-                        {{ $d->getSort() }}
+                        <span id="sort">
+                            {{ $d->getSort() }}
+                        </span>
                     </td>
                     <td>
                         {{ HTML::image('img/admin/editIcon.png', "Edit", array('class' => 'ckedit', 'data-pagename' => $d->getName(), 'data-pageid' => $d->getId())) }}
@@ -64,6 +66,80 @@
             @endforeach
             </tbody>
         </table>
+
+        <div id="ckWrap" style="display: none;">
+            <div id="currentEdit"></div>
+            {{ HTML::script("js/ckeditor/ckeditor.js") }}
+            <form class="ckForm" method="post">
+                <textarea name="ck" id="ck"></textarea>
+                <input type="submit" value="Send" class="submit" class="ckSubmit"/>
+            </form>
+
+            <script>
+                $(function() {
+
+                    $('.table tbody').sortable({
+                        connectWith: ".pageSelector",
+                        helper: 'clone',
+                        cursor: 'move',
+                        change: function(event, ui) {
+                            $("#sort").each(function() {
+                               //TODO Fix sorterings save
+                            });
+                        }
+                    });
+
+                    $(".ckedit").click(function() {
+                        editPagename = $(this).data("pagename");
+                        editPageid = $(this).data("pageid");
+                        $("#currentEdit").html("Editing: <strong>"+editPagename+"</strong>");
+                        $(".ckForm").attr("data-pagename", editPagename);
+                        $(".ckForm").attr("data-pageid", editPageid);
+                        if($("#ckWrap").is(":hidden")) {
+                            $("#ckWrap").show();
+                        }
+                        if(!CKEDITOR.instances.ck) {
+                            var roxyFileman = 'http://baademedia.dk/js/ckeditor/plugins/fileman/index.html';
+                            CKEDITOR.replace( 'ck',
+                                {
+                                    filebrowserBrowseUrl:roxyFileman,
+                                    filebrowserUploadUrl:roxyFileman,
+                                    filebrowserImageBrowseUrl:roxyFileman+'?type=image',
+                                    filebrowserImageUploadUrl:roxyFileman+'?type=image'
+                                });
+                        }
+                        var pagename = $(this).data("pagename");
+                        getCkContent(pagename, "{{ URL::route('admin-page-get-content') }}");
+                    });
+
+                    $( ".ckForm" ).on("submit", function( event ) {
+                        event.preventDefault();
+                        var editorData = CKEDITOR.instances.ck.getData();
+                        var pagename = ["name", editPagename];
+                        var pageid = editPageid;
+                        ajaxPost(pageid, editorData, '{{ URL::route('admin-page-post') }}');
+                        $("#ckWrap").fadeOut();
+                    });
+
+                    $(".pageSelector").each(function() {
+                        $(this).find("span#sort").html($(this).index() + 1);
+                    });
+                });
+
+                function getCkContent(name, postto) {
+                    var data = {
+                        name: name
+                    }
+                    $.ajax({
+                        url: postto,
+                        data: data,
+                        type: 'POST'
+                    }).done(function(data) {
+                            CKEDITOR.instances.ck.setData(data[0].content);
+                        });
+                }
+            </script>
+        </div>
     </div>
     <div class="tab-pane fade" id="create">
         <form action="{{ URL::route('admin-page-create') }}" method="post">
@@ -93,63 +169,6 @@
             <input type="submit" class="submit" value="Create page"/>
             {{ Form::token() }}
         </form>
-    </div>
-    <div id="ckWrap" style="display: none;">
-        {{ HTML::script("js/ckeditor/ckeditor.js") }}
-        <form class="ckForm" method="post">
-            <textarea name="ck" id="ck"></textarea>
-            <input type="submit" value="Send" class="submit" class="ckSubmit"/>
-        </form>
-        
-        <script>
-            $(function() {
-                $(".ckedit").click(function() {
-                    editPagename = $(this).data("pagename");
-                    editPageid = $(this).data("pageid");
-                    $(".ckForm").attr("data-pagename", editPagename);
-                    $(".ckForm").attr("data-pageid", editPageid);
-                    if($("#ckWrap").is(":hidden")) {
-                        $("#ckWrap").show();
-                    }
-                    if(!CKEDITOR.instances.ck) {
-                        var roxyFileman = 'http://baademedia.dk/js/ckeditor/plugins/fileman/index.html';
-                        CKEDITOR.replace( 'ck',
-                            {
-                                filebrowserBrowseUrl:roxyFileman,
-                                filebrowserUploadUrl:roxyFileman,
-                                filebrowserImageBrowseUrl:roxyFileman+'?type=image',
-                                filebrowserImageUploadUrl:roxyFileman+'?type=image'
-                            });
-                    }
-                    var pagename = $(this).data("pagename");
-                    getCkContent(pagename, "{{ URL::route('admin-page-get-content') }}");
-                });
-
-                $( ".ckForm" ).on("submit", function( event ) {
-                    event.preventDefault();
-                    var editorData = CKEDITOR.instances.ck.getData();
-                    var pagename = ["name", editPagename];
-                    var pageid = editPageid;
-                    ajaxPost(pageid, editorData, '{{ URL::route('admin-page-post') }}');
-                    $("#ckWrap").fadeOut();
-                });
-            });
-
-
-
-            function getCkContent(name, postto) {
-                var data = {
-                    name: name
-                }
-                $.ajax({
-                    url: postto,
-                    data: data,
-                    type: 'POST'
-                }).done(function(data) {
-                        CKEDITOR.instances.ck.setData(data[0].content);
-                    });
-            }
-        </script>
     </div>
 </div>
 @stop

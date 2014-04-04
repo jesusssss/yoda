@@ -28,6 +28,11 @@ $(document).ready(function() {
 
 // AJAX delete page function
 function ajaxDelete(ident, postto) {
+    var confirmPrompt = confirm("Are you sure you want to delete this page?");
+    if(!confirmPrompt) {
+        console.log("DENIED");
+        return false;
+    }
     var data = {
         id: ident
     }
