@@ -53,7 +53,7 @@
                         </select>
                     </td>
                     <td>
-                        <span id="sort">
+                        <span class="sort">
                             {{ $d->getSort() }}
                         </span>
                     </td>
@@ -82,10 +82,19 @@
                         connectWith: ".pageSelector",
                         helper: 'clone',
                         cursor: 'move',
-                        change: function(event, ui) {
-                            $("#sort").each(function() {
-                               //TODO Fix sorterings save
+                        stop: function(event, ui) {
+                            console.log("EVENT");
+                            sortList = [];
+                            $(".pageSelector").each(function() {
+                                sortList.push({
+                                    id: $(this).data("pageid"),
+                                    pos: $(this).index() + 1
+                                });
+                                var elmIndex = $(this).index() + 1;
+                                $(this).find(".sort").html(elmIndex);
                             });
+                            console.log(sortList);
+                            ajaxSort(sortList);
                         }
                     });
 
@@ -122,7 +131,7 @@
                     });
 
                     $(".pageSelector").each(function() {
-                        $(this).find("span#sort").html($(this).index() + 1);
+                        $(this).find("span.sort").html($(this).index() + 1);
                     });
                 });
 
@@ -137,6 +146,25 @@
                     }).done(function(data) {
                             CKEDITOR.instances.ck.setData(data[0].content);
                         });
+                }
+
+                function ajaxSort(sortList) {
+
+                    $.each(sortList, function(key, value) {
+                        console.log(value.id+" => "+value.pos);
+                        var data = {
+                            id: value.id,
+                            pos: value.pos
+                        }
+
+                        $.ajax({
+                            url: '{{ URL::route('admin-page-edit-sort') }}',
+                            data: data,
+                            type: 'POST'
+                        }).done(function(data) {
+                            console.log("Done sorting");
+                        });
+                    });
                 }
             </script>
         </div>

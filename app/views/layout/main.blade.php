@@ -5,11 +5,12 @@
         Auto College Aalborg
     </title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans:300,400,500,700,800,900,400italic,300italic,500italic,700italic,800italic' rel='stylesheet' type='text/css'/>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     {{ HTML::style('css/reset.css') }}
    {{ HTML::style('css/main.less', array("rel" => "stylesheet/less")) }}
    {{ HTML::script('js/main.js') }}
     <script rel="stylesheet/less" src="http://cdnjs.cloudflare.com/ajax/libs/less.js/1.7.0/less.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 </head>
 <body>

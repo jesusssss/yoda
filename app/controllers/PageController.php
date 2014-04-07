@@ -17,7 +17,7 @@ Class PageController extends BaseController {
                     )
                 );
             } else {
-                $q = Doctrine::createQuery("SELECT p.content FROM Page p WHERE p.id = (select min(b.id) from Page b)");
+                $q = Doctrine::createQuery("SELECT p.content FROM Page p WHERE p.sort = (select min(b.sort) from Page b)");
             }
         } else {
             $q = Doctrine::createQuery("SELECT p.content FROM Page p WHERE p.name = :page");
@@ -108,7 +108,7 @@ Class PageController extends BaseController {
             $q->setParameters(
                 array(
                     "val" => $value,
-                    "tokendata" => $id,
+                    "tokendata" => $id
                 )
             );
         }
@@ -117,6 +117,20 @@ Class PageController extends BaseController {
             return "Information updated";
         } else {
             return "Error in updating. Try again later";
+        }
+    }
+
+    public function editSort() {
+        $id = Input::get("id");
+        $pos = Input::get("pos");
+
+        $q = Doctrine::createQuery("UPDATE Page p SET p.sort = :pos WHERE p.id = :id");
+        $q->setParameters(array("pos" => $pos, "id" => $id));
+
+        if($q->execute()) {
+            return "Sort updated";
+        } else {
+            return "Sorting failed, try again later";
         }
     }
 
@@ -149,6 +163,4 @@ Class PageController extends BaseController {
 
         return "Page has been deleted";
     }
-
-
 }

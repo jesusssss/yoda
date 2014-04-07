@@ -112,6 +112,16 @@ Route::group(array('prefix' => 'admin'), function() {
             "uses" => "AdminController@getSettings"
         ));
 
+        Route::post("/user/delete", array(
+            "as" => "admin-user-delete",
+            "uses" => "UserController@deleteUser"
+        ));
+
+        Route::post("/user/create", array(
+            "as" => "admin-user-create",
+            "uses" => "UserController@createUser"
+        ));
+
         Route::post("/pages/create", array(
             "as" => "admin-page-create",
             "uses" => "PageController@createPage"
@@ -135,6 +145,11 @@ Route::group(array('prefix' => 'admin'), function() {
         Route::post("/pages/getContent", array(
             "as" => "admin-page-get-content",
             "uses" => "PageController@getPageContent"
+        ));
+
+        Route::post("/pages/editSort", array(
+            "as" => "admin-page-edit-sort",
+            "uses" => "PageController@editSort"
         ));
     });
 });

@@ -71,7 +71,10 @@ Class AdminController extends \BaseController {
      * Get Settings
      */
     public function getSettings() {
-        return View::make("admin.settings");
+
+        $allusers = Doctrine::getRepository('Users')->findAll();
+
+        return View::make("admin.settings", array("users" => $allusers));
     }
 
 }
