@@ -6,7 +6,7 @@ Class AdminController extends \BaseController {
      * Goto admin homepage
      */
     public function index() {
-        return View::make("admin.home");
+        return Redirect::route("admin-pages");
     }
 
     /*
@@ -26,7 +26,6 @@ Class AdminController extends \BaseController {
                 ->withErrors($validator)
                 ->withInput();
         } else {
-            //die(Hash::make("1000koder"));
             $user = Auth::attempt(array(
                         "username" => Input::get("username"),
                         "password" => Input::get("password")
@@ -63,7 +62,7 @@ Class AdminController extends \BaseController {
      * Get Cart
      */
     public function getCart() {
-        return Redirect::route("adminHome")
+        return Redirect::route("admin-pages")
             ->with("global", "Shop is deactivated");
     }
 

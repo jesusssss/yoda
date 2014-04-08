@@ -1,9 +1,5 @@
 <ul>
     <li>
-        <a id="dashboard" href="{{ URL::route('adminHome') }}">
-        </a>
-    </li>
-    <li>
         <a id="pages" href="{{ URL::route('admin-pages') }}">
         </a>
     </li>
