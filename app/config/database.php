@@ -54,10 +54,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'mysql29.unoeuro.com',
-			'database'  => 'baademedia_dk_db',
-			'username'  => 'baademedia_dk',
-			'password'  => '1000koder',
+			'host'      => 'autocollege.comuv.com',
+			'database'  => 'a4053624_auto',
+			'username'  => 'a4053624_auto',
+			'password'  => '06inat',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

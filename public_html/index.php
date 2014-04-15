@@ -1,4 +1,10 @@
 <?php
+
+define('__DIR__', dirname(__FILE__));
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 /**
  * Laravel - A PHP Framework For Web Artisans
  *
